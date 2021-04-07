@@ -93,19 +93,19 @@ app.get('/product/:season', (req, res) => {
 /////////////////////////////////////////////////
 
 
-app.delete('deleteProduct/:id', (req, res) => {
 
-   const id = ObjectId(req.params.id);
-   console.log('delete this', id)
-    productCollection.findOneAndDelete({_id: id})
-  .then(documents => res.send(!!documents.value))
- 
+app.delete('/deleteProduct/:id', (req,res) =>{
 
 
-      })
+productCollection.deleteOne({_id: ObjectId(req.params.id)})
 
+.then(result =>{
 
+     console.log(result.insertedCount >0)
 
+})
+
+})
 
    console.log('Database connection successfully')
   
